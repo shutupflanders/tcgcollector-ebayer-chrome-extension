@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+    <title>TCG Collector eBayer</title>
+    <link rel="stylesheet" href="popup.css" />
+    <link href="https://fonts.googleapis.com/css?family=Overpass:400i" rel="stylesheet">
+</head>
+<body>
+<div class="app">
+    <div class="heading">
+        <img src="icons/icon-128.png" alt="PokEbay Logo"/>
+        <h1>TCG Collector eBayer</h1>
+    </div>
+    <hr class="divider" />
+    <p class="title">Options</p>
+    <div class="subtitle">
+        <label>
+            <strong>Ebay URL: </strong> <small>(defaults to https://www.ebay.co.uk)</small>
+            <br />
+            <input id="api-url" name="api_url" />
+        </label>
+    </div>
+    <div class="button-container">
+        <button id="save" class="button">Save</button>
+    </div>
+    <div id="status"></div>
+    <hr class="divider" />
+    <div class="instructions">
+        <h3>Instructions</h3>
+        <ul>
+            <li>Place your eBay web URL of choice in the box above and hit "Save" (i.e: https://www.ebay.co.uk)</li>
+            <li>Navigate to your chosen chosen extension list on TCG Collector</li>
+            <li>Click the eBay icon on the right of the table row and a new tab will open with the search prefilled!</li>
+            <li>Please post issues and suggestions <a href="https://github.com/shutupflanders/pokebay-chrome-extension-issues">here</a></li>
+            <li>Thank you for using this extension, please consider buying me a <a href="https://www.buymeacoffee.com/IcV9egW">beer</a> if you like it!
+                (I don't drink coffee)</li>
+        </ul>
+    </div>
+</div>
+
+<script src="popup.js"></script>
+
+</body>
+</html>
