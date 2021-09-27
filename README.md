@@ -1,0 +1,1 @@
+# tcgcollector-ebayer-chrome-extension
