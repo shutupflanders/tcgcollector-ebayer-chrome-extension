@@ -20,3 +20,8 @@ Suggestions and pull requests are welcomed!.
 
 ---
 
+## Development
+
+* Pull the repository
+* Run `npm install` to install dependencies.
+* Run `npm run build` to build the package for testing.
