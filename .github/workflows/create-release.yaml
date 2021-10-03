@@ -46,7 +46,7 @@ jobs:
           extension: kfjjjpdpbdmepnbipdghbmloempgpkif
           zip: chrome.zip
           client-id: ${{ secrets.CHROME_CLIENT_ID }}
-          client-secret: ${{ secrets.CHROME_CLIENT_ID }}
+          client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
           refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
 
       - name: upload to firefox addon store
