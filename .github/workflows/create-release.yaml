@@ -22,14 +22,14 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: npm install
         run: npm ci
-      - name: npm run build
+      - name: build for chrome
         run: |
-          npm run build
+          npm run build-chrome
       - name: zip build artifact
         run: |
           zip -r build out
       - name: upload build artifact
         uses: actions/upload-artifact@v1
         with:
-          name: uploads
+          name: chrome
           path: build.zip
