@@ -22,14 +22,34 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 async function generateSearchUrl(name, number){
-  const searchUrl = await getSearchUrl()
-  return searchUrl.api_url+"/sch/i.html?_from=R40&_nkw="+name+"+"+number+"&_sacat=0&rt=nc&LH_All=1"
+  const listing_types = {
+    "all": "All",
+    "accepts_offers": "BO",
+    "auction": "Auction",
+    "buy_it_now": "BIN"
+  }
+
+  const sort_orders = {
+    "best_match": "12",
+    "lowest_price": "15",
+    "highest_price": "16",
+    "newly_listed": "10",
+    "ending_soonest": "1",
+    "nearest_first": "7"
+
+  }
+
+  const su = await getStoredValue("api_url")
+  const lt = await getStoredValue("listing_type")
+  const so = await getStoredValue("sort_order")
+
+  return `${su.api_url}/sch/i.html?_from=R40&_nkw=${name}+${number}&_sacat=0&rt=nc&LH_${listing_types[lt.listing_type]}=1&_sop=${sort_orders[so.sort_order]}`
 }
 
-function getSearchUrl(){
+function getStoredValue(key){
   return new Promise((resolve, reject) => {
     try {
-      chrome.storage.sync.get("api_url", function (value) {
+      chrome.storage.sync.get(key, function (value) {
         resolve(value);
       })
     }

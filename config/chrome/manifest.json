@@ -1,0 +1,37 @@
+{
+  "manifest_version": 2,
+  "name": "TCG Collector Ebayer",
+  "version": "0.1.1",
+  "description": "Opens an eBay search for the chosen card on TCG Collector.",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_title": "TCG Collector Ebayer",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "storage",
+    "https://www.tcgcollector.com/cards/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.tcgcollector.com/cards/*"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "contentScript.js"
+      ]
+    }
+  ]
+}

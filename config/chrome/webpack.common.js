@@ -4,7 +4,7 @@ const SizePlugin = require('size-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const PATHS = require('./paths');
+const PATHS = require('./../paths');
 
 // To re-use webpack configuration across templates,
 // CLI maintains a common webpack configuration file - `webpack.common.js`.
@@ -54,6 +54,10 @@ const common = {
         {
           from: '**/*',
           context: 'public',
+        },
+        {
+          from: 'manifest.json',
+          context: 'config/chrome',
         },
       ]
     }),

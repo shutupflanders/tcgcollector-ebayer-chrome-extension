@@ -4,8 +4,8 @@
   "description": "My Chrome Extension",
   "private": true,
   "scripts": {
-    "watch": "webpack --mode=development --watch --config config/webpack.config.js",
-    "build": "webpack --mode=production --config config/webpack.config.js"
+    "build-chrome": "webpack --mode=production --config config/chrome/webpack.config.js",
+    "build-firefox": "webpack --mode=production --config config/firefox/webpack.config.js"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^6.4.1",
