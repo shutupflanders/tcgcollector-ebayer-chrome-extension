@@ -27,7 +27,7 @@ jobs:
           npm run build-chrome
       - name: zip build artifact
         run: |
-          zip -r build out
+          zip -r build build
       - name: upload build artifact
         uses: actions/upload-artifact@v1
         with:
