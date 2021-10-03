@@ -20,16 +20,42 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+
       - name: npm install
         run: npm ci
+
       - name: build for chrome
         run: |
           npm run build-chrome
-      - name: zip build artifact
+
+      - name: zip build artifact for chrome
         run: |
-          zip -r build build
-      - name: upload build artifact
-        uses: actions/upload-artifact@v1
+          zip -r chrome.zip build/chrome
+
+      - name: build for firefox
+        run: |
+          npm run build-firefox
+
+      - name: zip build artifact for firefox
+        run: |
+          zip -r firefox.zip build/firefox
+
+      - name: upload to chrome webstore
+        uses: trmcnvn/chrome-addon@v2
         with:
-          name: chrome
-          path: build.zip
+          extension: kfjjjpdpbdmepnbipdghbmloempgpkif
+          zip: chrome.zip
+          client-id: ${{ secrets.CHROME_CLIENT_ID }}
+          refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
+
+      - name: upload to firefox addon store
+        uses: trmcnvn/firefox-addon@v1
+        with:
+          # uuid is only necessary when updating an existing addon,
+          # omitting it will create a new addon
+          uuid: '{84d7bf6d-d061-4048-85c5-7b210110e872}'
+          xpi: firefox.zip
+          manifest: build/firefox/manifest.json
+          api-key: ${{ secrets.FIREFOX_API_KEY }}
+          api-secret: ${{ secrets.FIREFOX_API_SECRET }}
+

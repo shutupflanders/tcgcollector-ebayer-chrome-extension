@@ -13,7 +13,7 @@ const PATHS = require('./../paths');
 const common = {
   output: {
     // the build folder to output bundles and assets in.
-    path: PATHS.build,
+    path: PATHS.build_firefox,
     // the filename template for entry chunks
     filename: '[name].js',
   },
