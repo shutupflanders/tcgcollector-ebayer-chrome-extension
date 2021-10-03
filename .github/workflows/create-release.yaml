@@ -54,7 +54,7 @@ jobs:
         with:
           # uuid is only necessary when updating an existing addon,
           # omitting it will create a new addon
-          uuid: 'tcg-collector-ebayer'
+          uuid: tcgcollectorebuyeraddon@gmail.com
           xpi: firefox.zip
           manifest: build/firefox/manifest.json
           api-key: ${{ secrets.FIREFOX_API_KEY }}
