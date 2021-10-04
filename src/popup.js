@@ -31,7 +31,7 @@ document.getElementById("save").onclick = function() {
             return;
         }
         const status = document.getElementById('status');
-        status.textContent = 'Options saved.';
+        status.textContent = 'Options saved, please refresh the page.';
         setTimeout(function() {
             status.textContent = '';
         }, 2000);
