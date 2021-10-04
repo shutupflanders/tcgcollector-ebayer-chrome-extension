@@ -2,7 +2,7 @@ name: Build Release
 
 on:
   push:
-    branches: [ dev ]
+    branches: [ main ]
 
 jobs:
 
@@ -40,23 +40,23 @@ jobs:
         run: |
           zip -r firefox.zip build/firefox
 
-#      - name: upload to chrome webstore
-#        uses: trmcnvn/chrome-addon@v2
-#        with:
-#          extension: kfjjjpdpbdmepnbipdghbmloempgpkif
-#          zip: chrome.zip
-#          client-id: ${{ secrets.CHROME_CLIENT_ID }}
-#          client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
-#          refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
-
-      - name: upload to firefox addon store
-        uses: trmcnvn/firefox-addon@v1
+      - name: upload to chrome webstore
+        uses: trmcnvn/chrome-addon@v2
         with:
-          # uuid is only necessary when updating an existing addon,
-          # omitting it will create a new addon
-          uuid: tcgcollectorebuyeraddon@gmail.com
-          xpi: firefox.zip
-          manifest: build/firefox/manifest.json
-          api-key: ${{ secrets.FIREFOX_API_KEY }}
-          api-secret: ${{ secrets.FIREFOX_API_SECRET }}
+          extension: kfjjjpdpbdmepnbipdghbmloempgpkif
+          zip: chrome.zip
+          client-id: ${{ secrets.CHROME_CLIENT_ID }}
+          client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
+          refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
+
+#      - name: upload to firefox addon store
+#        uses: trmcnvn/firefox-addon@v1
+#        with:
+#          # uuid is only necessary when updating an existing addon,
+#          # omitting it will create a new addon
+#          uuid: tcgcollectorebuyeraddon@gmail.com
+#          xpi: firefox.zip
+#          manifest: build/firefox/manifest.json
+#          api-key: ${{ secrets.FIREFOX_API_KEY }}
+#          api-secret: ${{ secrets.FIREFOX_API_SECRET }}
 
