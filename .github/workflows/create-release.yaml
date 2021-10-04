@@ -2,41 +2,9 @@ name: Build Release
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches: [ main ]
 
 jobs:
-  upload-release:
-
-    runs-on: ubuntu-20.04
-    needs: [build-release]
-
-    steps:
-      - uses: actions/checkout@v1
-      - name: create release
-        id: create_release
-        uses: actions/create-release@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
-      - name: download artifacts
-        uses: actions/download-artifact@v1
-        with:
-          name: uploads
-      - name: upload release
-        id: upload-release
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./uploads/build.zip
-          asset_name: build.zip
-          asset_content_type: application/zip
 
   build-release:
 
@@ -52,18 +20,43 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: npm install, build, and test
+
+      - name: npm install
+        run: npm ci
+
+      - name: build for chrome
         run: |
-          npm ci
-          npm test
-      - name: npm run build
+          npm run build-chrome
+
+      - name: zip build artifact for chrome
         run: |
-          npm run build
-      - name: zip build artifact
+          zip -r chrome.zip build/chrome
+
+      - name: build for firefox
         run: |
-          zip -r build out
-      - name: upload build artifact
-        uses: actions/upload-artifact@v1
+          npm run build-firefox
+
+      - name: zip build artifact for firefox
+        run: |
+          zip -r firefox.zip build/firefox
+
+      - name: upload to chrome webstore
+        uses: trmcnvn/chrome-addon@v2
         with:
-          name: uploads
-          path: build.zip
+          extension: kfjjjpdpbdmepnbipdghbmloempgpkif
+          zip: chrome.zip
+          client-id: ${{ secrets.CHROME_CLIENT_ID }}
+          client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
+          refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
+
+#      - name: upload to firefox addon store
+#        uses: trmcnvn/firefox-addon@v1
+#        with:
+#          # uuid is only necessary when updating an existing addon,
+#          # omitting it will create a new addon
+#          uuid: tcgcollectorebuyeraddon@gmail.com
+#          xpi: firefox.zip
+#          manifest: build/firefox/manifest.json
+#          api-key: ${{ secrets.FIREFOX_API_KEY }}
+#          api-secret: ${{ secrets.FIREFOX_API_SECRET }}
+
