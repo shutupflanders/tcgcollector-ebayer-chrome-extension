@@ -34,11 +34,6 @@ function getNameAndNumberFromRow(rowElement){
 }
 
 function parseResults(results){
-    const header = document.getElementById('card-list-header')
-    const newHeaderItem = document.createElement('div');
-    newHeaderItem.innerHTML = "eBay";
-    newHeaderItem.className = "card-list-item-entry"
-    header.children[0].appendChild(newHeaderItem)
     const elements = document.getElementsByClassName('card-search-result-card');
     results.map(function(item){
         let matchingElement = elements[(item.index)];
