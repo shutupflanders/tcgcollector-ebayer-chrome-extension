@@ -33,3 +33,14 @@ Suggestions and pull requests are welcomed.
 * Pull the repository
 * Run `npm install` to install dependencies.
 * Run `npm run build-<<chrome|firefox>>` to build the package for testing.
+
+
+
+## Donations
+
+If you like my work, please consider buying me a beer (I don't drink coffee)
+
+[![Buy me a coffee][buymeacoffee-shield]][buymeacoffee]
+
+[buymeacoffee-shield]: https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-2.svg
+[buymeacoffee]: https://www.buymeacoffee.com/IcV9egW
