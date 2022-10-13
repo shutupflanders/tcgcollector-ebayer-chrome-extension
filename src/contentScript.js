@@ -4,7 +4,7 @@ chrome.runtime.sendMessage(
   {
     type: 'POKEMONCARDLISTING',
     payload: {
-      message: [...document.getElementsByClassName('card-search-result-card')]
+      message: [...document.getElementsByClassName('card-search-result-item')]
           .reduce(function(result, ele, index){
               result.push({
                   ...{"index": index},
@@ -34,7 +34,7 @@ function getNameAndNumberFromRow(rowElement){
 }
 
 function parseResults(results){
-    const elements = document.getElementsByClassName('card-search-result-card');
+    const elements = document.getElementsByClassName('card-search-result-item');
     results.map(function(item){
         let matchingElement = elements[(item.index)];
 
